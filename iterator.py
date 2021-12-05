@@ -17,15 +17,15 @@ class FlatIterator:
     if self.count == len(self.list_):
       raise StopIteration
     self.newlist = self.list_[self.count]
-    if isinstance(self.newlist, list):
-      for item in FlatIterator(self.newlist):        
-        print(item)          
+    
+    l = []
+    if isinstance(self.newlist, list):      
+      for i in FlatIterator(self.newlist):        
+        l.extend(i)              
     else:
-      return self.newlist    
-    return ""
+      l.append(self.newlist)
+     
+    return(l)
     
 for item in FlatIterator(nested_list):
-  # if item is None:
-  #   pass  
-  # else: 
-    print(item)
+  print(*item, sep='\n')
